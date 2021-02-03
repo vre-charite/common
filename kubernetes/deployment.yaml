@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: common
+  namespace: utility
+  labels:
+    app: common
+    env: charite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: common
+      env: charite
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 33%
+  template:
+    metadata:
+      labels:
+        app: common
+        env: charite
+    spec:
+      containers:
+        - name: common
+          image: 10.32.42.225:5000/common:<VERSION>
+          ports:
+            - containerPort: 5062
+          env:
+          - name: env
+            value: "charite"
+          readinessProbe:
+            tcpSocket:
+              port: 5062
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              memory: "1000Mi"
+              cpu: "1"
+            limits:
+              memory: "1000Mi"
+              cpu: "1"
+      nodeSelector:
+        namespace: utility
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: common
+  namespace: utility
+  labels:
+    app: common
+    env: charite
+spec:
+  ports:
+  - name: http
+    port: 5062
+    targetPort: 5062
+  selector:
+    app: common
+    env: charite
+  type: ClusterIP
