@@ -44,10 +44,8 @@ class TestGetEntityId(unittest.TestCase):
             res = json.loads(res.data)
             self.log.info(f"RESPONSE RESULT: {res['result']}")
             self.log.info(f"RESPONSE ERROR: {res['error_msg']}")
-            self.log.info(f"COMPARING: 400 VS {res['code']}")
-            self.assertEqual(res['code'], 400)
-            self.log.info(f"COMPARING: 'entity_type is required' VS {res['error_msg']}")
-            self.assertEqual('entity_type is required', res['error_msg'])
+            self.log.info(f"COMPARING: 200 VS {res['code']}")
+            self.assertEqual(res['code'], 200)
         except Exception as e:
             self.log.error(f"GET ERROR: {e}")
             raise e
@@ -79,31 +77,12 @@ class TestGetEntityId(unittest.TestCase):
             res = json.loads(res.data)
             self.log.info(f"RESPONSE RESULT: {res['result']}")
             self.log.info(f"RESPONSE ERROR: {res['error_msg']}")
-            self.log.info(f"COMPARING: 400 VS {res['code']}")
-            self.assertEqual(res['code'], 400)
-            self.log.info(f"COMPARING: 'entity_type is required' VS {res['error_msg']}")
-            self.assertEqual('entity_type is required', res['error_msg'])
+            self.log.info(f"COMPARING: 200 VS {res['code']}")
+            self.assertEqual(res['code'], 200)
         except Exception as e:
             self.log.error(f"GET ERROR: {e}")
             raise e
 
-    def test_05_get_entity_id_empty_string(self):
-        self.log.info("\n")
-        self.log.info('05' + 'test get_entity_id_None'.center(80, '-'))
-        params = {'entity_type': None}
-        try:
-            res = self.app.get('/v1/utility/id', query_string=params)
-            self.log.info(f"RESPONSE STATUS: {res.status_code}")
-            res = json.loads(res.data)
-            self.log.info(f"RESPONSE RESULT: {res['result']}")
-            self.log.info(f"RESPONSE ERROR: {res['error_msg']}")
-            self.log.info(f"COMPARING: 400 VS {res['code']}")
-            self.assertEqual(res['code'], 400)
-            self.log.info(f"COMPARING: 'entity_type is required' VS {res['error_msg']}")
-            self.assertEqual('entity_type is required', res['error_msg'])
-        except Exception as e:
-            self.log.error(f"GET ERROR: {e}")
-            raise e
 
 if __name__ == '__main__':
     unittest.main()
