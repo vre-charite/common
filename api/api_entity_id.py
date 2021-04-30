@@ -13,42 +13,20 @@ get_return = """
             }
             """
 
-get_error = """
-            {
-                "code": 400,
-                "error_msg": "entity_type is required",
-                "result": ""
-            }
-            """
-
-
 class APIGenerateID(Resource):
     _logger = SrvLoggerFactory('api_generate_id').get_logger()
 
-    @api_service_utility.doc(params={'entity_type': 'Entity type (optional)'})
     @api_service_utility.response(200, get_return)
-    @api_service_utility.response(400, get_error)
     def get(self):
-        """Generate a unique id, which is entity_type + uuid + timestamp"""
-        entity_type = request.args.get("entity_type", None)
-        self._logger.info(f"Received entity type: {entity_type}")
+        """Generate a unique id, which is uuid + timestamp"""
         api_response = APIResponse()
         try:
-            if entity_type:
-                self._logger.info(f"Generate geid with data type: {entity_type}")
-                new_id = GenerateId()
-                entity_type = str(entity_type)
-                uniq_id = entity_type + '-' + new_id.generate_id() + '-' + new_id.time_hash()
-                api_response.set_code(EAPIResponseCode.success)
-                api_response.set_result(uniq_id)
-                return api_response.to_dict, api_response.code
-            else:
-                self._logger.info(f"Generate geid without data type")
-                new_id = GenerateId()
-                uniq_id = new_id.generate_id() + '-' + new_id.time_hash()
-                api_response.set_code(EAPIResponseCode.success)
-                api_response.set_result(uniq_id)
-                return api_response.to_dict, api_response.code
+            self._logger.info(f"Generate geid without data type")
+            new_id = GenerateId()
+            uniq_id = new_id.generate_id() + '-' + new_id.time_hash()
+            api_response.set_code(EAPIResponseCode.success)
+            api_response.set_result(uniq_id)
+            return api_response.to_dict, api_response.code
         except Exception as e:
             self._logger.error(f"ERROR HAPPENED: {e}")
             api_response.set_code(EAPIResponseCode.internal_error)
