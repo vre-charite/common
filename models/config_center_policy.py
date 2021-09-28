@@ -21,4 +21,6 @@ class ConfigCenterPolicy:
             "QUEUE_SERVICE",
             "UTILITY_SERVICE",
             "DATA_OPS_GR",
+            "DATA_OPS_UTIL",
+            "DATASET_SERVICE",
         ]

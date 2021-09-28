@@ -13,6 +13,7 @@ get_return = """
             }
             """
 
+
 class APIGenerateID(Resource):
     _logger = SrvLoggerFactory('api_generate_id').get_logger()
 
@@ -33,3 +34,28 @@ class APIGenerateID(Resource):
             api_response.set_result(e)
             return api_response.to_dict, api_response.code
 
+
+class APIBulkGenerateID(Resource):
+    _logger = SrvLoggerFactory('api_bulk_generate_id').get_logger()
+
+    @api_service_utility.response(200, get_return)
+    def get(self):
+        """Generate a unique id, which is uuid + timestamp"""
+        api_response = APIResponse()
+        number = int(request.args.get('number', 1))
+        try:
+            self._logger.info(f"Generate geid without data type")
+            id_list = []
+            for i in range(number):
+                new_id = GenerateId()
+                uniq_id = new_id.generate_id() + '-' + new_id.time_hash()
+                id_list.append(uniq_id)
+
+            api_response.set_code(EAPIResponseCode.success)
+            api_response.set_result(id_list)
+            return api_response.to_dict, api_response.code
+        except Exception as e:
+            self._logger.error(f"ERROR HAPPENED: {e}")
+            api_response.set_code(EAPIResponseCode.internal_error)
+            api_response.set_result(e)
+            return api_response.to_dict, api_response.code

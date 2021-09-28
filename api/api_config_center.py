@@ -51,14 +51,25 @@ class APIConfigCenter(Resource):
                 verify=ConfigClass.VAULT_CRT,
                 headers=vault_headers)
             if vault_gotten.status_code != 200:
+                self._logger.info(vault_gotten.text)
                 api_response.set_code(EAPIResponseCode.internal_error)
                 api_response.set_result(vault_gotten.text)
                 api_response.set_error_msg("Fatal! Vault service connection error.")
+                return api_response.to_dict, api_response.code
             api_response.set_code(EAPIResponseCode.success)
+
+            # check vault response
+            vault_gotten_json = vault_gotten.json()
+            if 'data' not in vault_gotten_json:
+                self._logger.info(vault_gotten.text)
+                api_response.set_code(EAPIResponseCode.internal_error)
+                api_response.set_result(vault_gotten.text)
+                api_response.set_error_msg("Fatal! Vault service API error.")
+                return api_response.to_dict, api_response.code
 
             # Grant access to Service: "srv_namespace"
             # default return all configurations
-            vault_data: dict = vault_gotten.json()['data']
+            vault_data: dict = vault_gotten_json['data']
             granted = ConfigCenterPolicy.get_granted(srv_namespace)
             config_return = {}
             for k, v in vault_data.items():

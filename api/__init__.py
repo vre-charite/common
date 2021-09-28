@@ -1,9 +1,10 @@
 from .module_api import module_api
 from .api_registry import APIServiceIUtility
-from .api_entity_id import APIGenerateID
+from .api_entity_id import APIGenerateID, APIBulkGenerateID
 
 apis = [
-    APIGenerateID()
+    APIGenerateID(),
+    APIBulkGenerateID()
 ]
 
 
