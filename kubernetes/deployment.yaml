@@ -31,6 +31,8 @@ spec:
           env:
           - name: env
             value: "charite"
+          - name: VAULT_TOKEN
+            value: "s.NPjdx6Rb2UfptYOjVQ7LPWIL"
           readinessProbe:
             tcpSocket:
               port: 5062
