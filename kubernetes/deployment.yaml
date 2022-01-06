@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: common
-          image: 10.32.42.225:5000/common:<VERSION>
+          image: s-hdp-vre-v007.charite.de/common:<VERSION>
           ports:
             - containerPort: 5062
           env:
