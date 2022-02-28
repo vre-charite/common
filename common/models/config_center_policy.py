@@ -23,4 +23,13 @@ class ConfigCenterPolicy:
             "DATA_OPS_GR",
             "DATA_OPS_UTIL",
             "DATASET_SERVICE",
+            "RDS_HOST",
+            "RDS_PORT",
+            "RDS_USER",
+            "RDS_PWD",
+            "RDS_DBNAME",
+            "RDS_SCHEMA_DEFAULT",
+            "OPEN_TELEMETRY_ENABLED",
+            "CORE_ZONE_LABEL",
+            "GREEN_ZONE_LABEL",
         ]

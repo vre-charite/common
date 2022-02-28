@@ -1,9 +1,7 @@
 import unittest
-from tests.logger import Logger
-from tests.preparetest import SetUpTest
-
 import json
-
+from common.tests.logger import Logger
+from common.tests.preparetest import SetUpTest
 
 class TestGetEntityId(unittest.TestCase):
     log = Logger(name='test_entity_id.log')

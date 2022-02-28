@@ -1,3 +1,3 @@
 #!/bin/sh
 
-gunicorn -c gunicorn_config.py "app:create_app()"
+gunicorn --preload -c gunicorn_config.py --chdir ./common "app:create_app()"

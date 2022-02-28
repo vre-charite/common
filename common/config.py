@@ -9,10 +9,10 @@ class Settings(BaseSettings):
     env: str = "test"
     namespace: str = ""
     
-    api_modules: List[str] = ["api"]
+    api_modules: List[str] = ["common.api"]
     VAULT_SERVICE: str = "https://vault.vault:8200/v1/vre/app/config"
     VAULT_CRT: str = "/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-    VAULT_TOKEN: str
+    VAULT_TOKEN: str = "s.p97lqlxBZ61C6sx5aHAFB4Ya"
     
     class Config:
         env_file = '.env'

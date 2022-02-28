@@ -1,6 +1,6 @@
 import requests
 import time
-from app import create_app
+from common.app import create_app
 
 class SetUpTest:
 

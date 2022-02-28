@@ -1,6 +1,7 @@
 from .module_api import module_api
 from .api_registry import APIServiceIUtility
 from .api_entity_id import APIGenerateID, APIBulkGenerateID
+from .api_config_center import APIConfigCenter
 
 apis = [
     APIGenerateID(),

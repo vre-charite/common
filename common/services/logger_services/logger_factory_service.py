@@ -1,7 +1,7 @@
 import logging
 import os, os.path
 import sys
-from models.service_meta_class import MetaService
+from common.models.service_meta_class import MetaService
 from .formatter import formatter_factory
 
 my_formatter = formatter_factory()

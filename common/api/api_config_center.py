@@ -1,11 +1,11 @@
 from flask_restx import Resource, fields
 from flask import request
-from services.logger_services.logger_factory_service import SrvLoggerFactory
-from api_response import APIResponse, EAPIResponseCode
-from api.namespace import api_service_utility
-from models.config_center_policy import ConfigCenterPolicy
+from common.services.logger_services.logger_factory_service import SrvLoggerFactory
+from common.api_response import APIResponse, EAPIResponseCode
+from common.api.namespace import api_service_utility
+from common.models.config_center_policy import ConfigCenterPolicy
 import requests
-from config import ConfigClass
+from common.config import ConfigClass
 
 get_return = """
             {

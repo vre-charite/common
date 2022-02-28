@@ -1,9 +1,9 @@
 from flask_restx import Resource, fields
 from flask import request
-from services.logger_services.logger_factory_service import SrvLoggerFactory
-from models.service_id_generator import GenerateId
-from api_response import APIResponse, EAPIResponseCode
-from api.namespace import api_service_utility
+from common.services.logger_services.logger_factory_service import SrvLoggerFactory
+from common.models.service_id_generator import GenerateId
+from common.api_response import APIResponse, EAPIResponseCode
+from common.api.namespace import api_service_utility
 
 get_return = """
             {

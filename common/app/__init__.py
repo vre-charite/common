@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_cors import CORS
-from config import ConfigClass
+from common.config import ConfigClass
 import importlib
 import logging
 import logging.handlers
