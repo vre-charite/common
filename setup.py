@@ -1,33 +1,43 @@
+# Copyright 2022 Indoc Research
+# 
+# Licensed under the EUPL, Version 1.2 or – as soon they
+# will be approved by the European Commission - subsequent
+# versions of the EUPL (the "Licence");
+# You may not use this work except in compliance with the
+# Licence.
+# You may obtain a copy of the Licence at:
+# 
+# https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+# 
+# Unless required by applicable law or agreed to in
+# writing, software distributed under the Licence is
+# distributed on an "AS IS" basis,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+# express or implied.
+# See the Licence for the specific language governing
+# permissions and limitations under the Licence.
+# 
+
 import setuptools
 
 setuptools.setup(
-    name="common",
-    version="0.0.19",
-    author="Indoc Research",
-    author_email="etaylor@indocresearch.org",
-    description="Generates entity ID and connects with Vault (secret engine) to retrieve credentials",
+    name='common',
+    version='0.0.20',
+    author='Indoc Research',
+    author_email='etaylor@indocresearch.org',
+    description='Generates entity ID and connects with Vault (secret engine) to retrieve credentials',
     packages=setuptools.find_packages(),
     classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
     ],
     python_requires='>=3.6',
     install_requires=[
-        'flask-executor==0.9.3',
-        'gunicorn==20.0.4',
-        'flask-restx==0.2.0',
-        'Flask==1.1.4',
-        'Flask-Cors==3.0.8',
-        'python-json-logger==0.1.11',
-        'requests>=2.23.0,<=2.27.0',
         'python-dotenv==0.19.1',
-        'pydantic==1.8.2',
-        'itsdangerous==1.1.0',
-        'markupsafe==1.1.1',
     ],
     include_package_data=True,
     package_data={
-        "": ["*.crt"],
-    }
+        '': ['*.crt'],
+    },
 )
